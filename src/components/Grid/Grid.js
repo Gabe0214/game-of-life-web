@@ -1,13 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import produce from 'immer';
-import { useStyles } from './DropDownStyle'
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-
-// const numRows = 30;
-// const numCols = 40;
-
+import { Randomize } from './Randomize'
+import { Start } from './StartButton'
+import { Clear } from './ClearButton'
+import { DropDown } from './ColorDropDown'
 
 const conditions = [
     [0, 1],
@@ -21,23 +17,13 @@ const conditions = [
 ]
 
 const Grid = () => {
-    const classes = useStyles()
     const [numRows, setNumRows] = useState(30)
     const [numCols, setNumCols] = useState(30)
     const [colorCell, setColorCell] = useState('red') 
     const [grid, setGrid] = useState(null)
+    const [count, setCount] = useState(0)
 
-
-
-   const clearGrid = () => {
-    const rows = []
-    for (let i = 0; i < numRows; i++){
-      rows.push(Array.from(Array(numCols), () => 0))
-    }
-     return setGrid(rows)
-   }
    
-
 
    const [simulation, setSimulation] = useState(false)
    const runningRef = useRef(simulation)
@@ -47,7 +33,9 @@ const Grid = () => {
     if (!runningRef.current) {
       return;
     }
-
+    setCount((count) => {
+        return count +=1
+    })
     setGrid(g => {
       return produce(g, gridCopy => {
           console.log(numCols, numRows)
@@ -72,7 +60,7 @@ const Grid = () => {
       });
     });
 
-    setTimeout(runSimulation, 10);
+    setTimeout(runSimulation, 100);
   }, []);
 
 
@@ -94,62 +82,27 @@ const Grid = () => {
  
 
 
-   const increaseGridSize = () => {
-      setNumCols(numCols + 10)
-      setNumRows(numRows + 10)
-   }
+//    const increaseGridSize = () => {
+//       setNumCols(numCols + 10)
+//       setNumRows(numRows + 10)
+//    }
 
-
-   const randomize = () => {
-    const rows = [];
-    for (let i = 0; i < numRows; i++) {
-      rows.push(
-        Array.from(Array(numCols), () => (Math.random() > 0.7 ? 1 : 0))
-      );
-    }
-
-    setGrid(rows);
-
-   }
 
    
 
-   const colorChange = (e) => {
-       console.log(e.target.value)
-     setColorCell(e.target.value)
-   }
-
     return(
     <>   
-        <button onClick={increaseGridSize}>+</button>
-        <button onClick={() => { setSimulation(!simulation); if(!simulation){
-            runningRef.current = true;
-            runSimulation();
-        }}}>{simulation ? 'Stop' : 'Start'}</button>
-        <button onClick={randomize}>Randomize</button>
-        <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel htmlFor="outlined-age-native-simple">Color</InputLabel>
-        <Select
-          native
-          value={colorCell}
-          onChange= {colorChange}
-          label="Color"
-          inputProps={{
-            name: 'Color',
-            id: 'outlined-age-native-simple',
-          }}
-        >
-          <option aria-label="None" value="" />
-          <option value={'red'}>Red</option>
-          <option value={'blue'}>Blue</option>
-          <option value={'green'}>Green</option>
-        </Select>
-      </FormControl>
-        <button onClick={clearGrid}>Clear</button>
+        {/* <button onClick={increaseGridSize}>+</button> */}
+        <Start setSimulation ={setSimulation} simulation={simulation} runSimulation={runSimulation} runningRef={runningRef}/>
+        <Randomize setGrid={setGrid} numRows={numRows} cols ={numCols}/>
+         <DropDown color={colorCell} setColor={setColorCell}/>
+        <Clear setSimulation={setSimulation} simulation ={simulation} setCount = {setCount} setGrid={setGrid} numCols={numCols} numRows={numRows}/>
+        <br/>
+        <h2>Generations: {count}</h2>
         <div style={{display: 'grid', gridTemplateColumns: `repeat(${numCols}, 20px)`, margin: '0 auto', justifyContent:'center', marginBottom:'5%'}}>
             {grid && grid.map((rows, i) => rows.map((col, k) => (
                 <div key={`${i}-${k}`}
-                onClick={()=>{clickedCell([i],[k])}}
+                onClick={!simulation ? ()=>{clickedCell([i],[k])}: null}
                 style={{height: 20, width: 20, backgroundColor: grid[i][k] ? `${colorCell}`: null,
                 border: '1px solid grey'
             }}

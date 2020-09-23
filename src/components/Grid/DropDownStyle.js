@@ -3,10 +3,11 @@ import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
     formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
+        margin: 0,
+        minWidth: 100,
+        minHeight: 0
     },
     selectEmpty: {
-        marginTop: theme.spacing(2)
+        marginTop: 0
     }
 }))
