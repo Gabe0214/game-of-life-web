@@ -4,6 +4,8 @@ import { Randomize } from './Randomize'
 import { Start } from './StartButton'
 import { Clear } from './ClearButton'
 import { DropDown } from './ColorDropDown'
+// import { ThemeProvider } from '@material-ui/core'
+// import startTheme  from './ButtonStyle'
 
 const conditions = [
     [0, 1],
@@ -82,21 +84,18 @@ const Grid = () => {
  
 
 
-//    const increaseGridSize = () => {
-//       setNumCols(numCols + 10)
-//       setNumRows(numRows + 10)
-//    }
 
 
    
 
     return(
     <>   
-        {/* <button onClick={increaseGridSize}>+</button> */}
-        <Start setSimulation ={setSimulation} simulation={simulation} runSimulation={runSimulation} runningRef={runningRef}/>
+      
+        < Start setSimulation ={setSimulation} simulation={simulation} runSimulation={runSimulation} runningRef={runningRef}/>
         <Randomize setGrid={setGrid} numRows={numRows} cols ={numCols}/>
          <DropDown color={colorCell} setColor={setColorCell}/>
         <Clear setSimulation={setSimulation} simulation ={simulation} setCount = {setCount} setGrid={setGrid} numCols={numCols} numRows={numRows}/>
+       
         <br/>
         <h2>Generations: {count}</h2>
         <div style={{display: 'grid', gridTemplateColumns: `repeat(${numCols}, 20px)`, margin: '0 auto', justifyContent:'center', marginBottom:'5%'}}>

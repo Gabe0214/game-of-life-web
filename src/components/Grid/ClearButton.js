@@ -3,11 +3,11 @@ import Button from '@material-ui/core/Button'
 import { buttonStyles } from './ButtonStyle'
 export const Clear = ({numRows, numCols, setGrid, setCount, simulation, setSimulation}) => {
     
-    const classes = buttonStyles()
+ 
   const clearGrid = () => {
     setCount(0)
 
-    setSimulation(!simulation)
+    setSimulation(false)
     const rows = []
     for (let i = 0; i < numRows; i++){
       rows.push(Array.from(Array(numCols), () => 0))
@@ -18,7 +18,7 @@ export const Clear = ({numRows, numCols, setGrid, setCount, simulation, setSimul
 
     return(
         <>
-        <Button variant="outlined" onClick={clearGrid} className={classes.clear}>
+        <Button variant="outlined" onClick={clearGrid} style={{border: '1px solid grey', color:'grey', marginLeft: '2%'}}>
            Clear
         </Button>
         </>
