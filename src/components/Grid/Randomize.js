@@ -19,7 +19,7 @@ export const Randomize = ({numRows, setRows, setGrid, cols}) => {
     }
     return (
         <>
-         <Button className ={classes.random} variant="outlined"  onClick={randomCells}>
+         <Button className ={classes.random} variant="outlined" onClick={randomCells} color="primary">
             Randomize
         </Button>
         </>

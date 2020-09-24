@@ -1,6 +1,6 @@
-import { makeStyles } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/'
 
-export const buttonStyles = makeStyles((theme) => ({
+export const buttonStyles = makeStyles(() => ({
   random: {
       marginRight: '2%'
   },
@@ -15,7 +15,7 @@ export const buttonStyles = makeStyles((theme) => ({
   start: {
       marginRight: '2%',
       border: '1px solid green',
-      color: 'green',
+      color: 'green !important',
       '&:hover': {
           border: '1px solid green'
       }
