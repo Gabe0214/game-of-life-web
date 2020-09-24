@@ -6,6 +6,7 @@ import { Clear } from './ClearButton'
 import { DropDown } from './ColorDropDown'
 import { SpeedSlider } from './SeedSlider'
 import { ReadMe } from '../Rules/ButtonRules'
+import { Rules } from '../Rules/Rules'
 const conditions = [
     [0, 1],
     [0, -1],
@@ -24,7 +25,7 @@ const Grid = () => {
     const [grid, setGrid] = useState(null)
     const [count, setCount] = useState(0)
     const [speed, setSpeed] = useState(25)
-   
+    const [open, setOpen] = useState(false)
 
    const [simulation, setSimulation] = useState(false)
    const runningRef = useRef(simulation)
@@ -97,7 +98,7 @@ const Grid = () => {
         <Randomize setGrid={setGrid} numRows={numRows} cols ={numCols}/>
          <DropDown color={colorCell} setColor={setColorCell}/>
         <Clear setSimulation={setSimulation} simulation ={simulation} setCount = {setCount} setGrid={setGrid} numCols={numCols} numRows={numRows}/>
-        <ReadMe/>
+        <ReadMe setOpen={setOpen}/>
         <br/> 
         <SpeedSlider setSpeed={setSpeed} speed={speed}/> 
         <h2>Generations: {count}</h2>
@@ -112,6 +113,7 @@ const Grid = () => {
                 </div>
             )))}
         </div>
+        <Rules setOpen={setOpen} open={open}/>
     </>
     )
 }
