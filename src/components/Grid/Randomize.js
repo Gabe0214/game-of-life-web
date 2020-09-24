@@ -1,5 +1,5 @@
 import React from 'react'
-import { buttonStyle, buttonStyles } from './ButtonStyle'
+import {  buttonStyles } from './ButtonStyle'
 import Button from '@material-ui/core/Button'
 
 
@@ -19,7 +19,7 @@ export const Randomize = ({numRows, setRows, setGrid, cols}) => {
     }
     return (
         <>
-         <Button className ={classes.random} variant="outlined" color="primary" onClick={randomCells}>
+         <Button className ={classes.random} variant="outlined"  onClick={randomCells}>
             Randomize
         </Button>
         </>

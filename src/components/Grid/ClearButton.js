@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import { buttonStyle, buttonStyles } from './ButtonStyle'
+import { buttonStyles } from './ButtonStyle'
 export const Clear = ({numRows, numCols, setGrid, setCount, simulation, setSimulation}) => {
     
     const classes = buttonStyles()
@@ -18,7 +18,7 @@ export const Clear = ({numRows, numCols, setGrid, setCount, simulation, setSimul
 
     return(
         <>
-        <Button variant="outlined" color="primary" onClick={clearGrid} className={classes.clear}>
+        <Button variant="outlined" onClick={clearGrid} className={classes.clear}>
            Clear
         </Button>
         </>

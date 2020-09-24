@@ -6,7 +6,7 @@ export const Start = ({setSimulation, simulation, runningRef, runSimulation}) =>
     const classes = buttonStyles()
     return (
          <>
-          <Button variant="outlined" color="primary" onClick={() =>{
+          <Button variant="outlined"  onClick={() =>{
             setSimulation(!simulation);
             if(!simulation){
                 runningRef.current = true;
