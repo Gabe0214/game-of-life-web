@@ -1,6 +1,5 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import { buttonStyles } from './ButtonStyle'
 export const Clear = ({numRows, numCols, setGrid, setCount, simulation, setSimulation}) => {
     
  

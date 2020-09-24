@@ -1,7 +1,7 @@
 import React from 'react'
-import { ThemeProvider } from '@material-ui/core'
+
 import Button from '@material-ui/core/Button'
-import startTheme from './ButtonStyle'
+
 
 
 export const Randomize = ({numRows, setRows, setGrid, cols}) => {

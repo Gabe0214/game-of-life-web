@@ -1,7 +1,6 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
-import { ThemeProvider } from '@material-ui/core'
-import  startTheme from './ButtonStyle'
+
 
 export const Start = ({setSimulation, simulation, runningRef, runSimulation}) => {
     
