@@ -1,13 +1,6 @@
 import { makeStyles } from '@material-ui/core'
 
 export const buttonStyles = makeStyles((theme) => ({
-  root : {
-      '& > *': {
-          margin: theme.spacing(1)
-      },
-
-    
-  },
   random: {
       marginRight: '2%'
   },
