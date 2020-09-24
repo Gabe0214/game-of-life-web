@@ -4,9 +4,9 @@ import { Randomize } from './Randomize'
 import { Start } from './StartButton'
 import { Clear } from './ClearButton'
 import { DropDown } from './ColorDropDown'
-// import { ThemeProvider } from '@material-ui/core'
-// import startTheme  from './ButtonStyle'
-
+import { SpeedSlider } from './SeedSlider'
+import { ReadMe } from '../Rules/ButtonRules'
+import { Rules } from '../Rules/Rules'
 const conditions = [
     [0, 1],
     [0, -1],
@@ -24,13 +24,16 @@ const Grid = () => {
     const [colorCell, setColorCell] = useState('red') 
     const [grid, setGrid] = useState(null)
     const [count, setCount] = useState(0)
-
-   
+    const [speed, setSpeed] = useState(25)
+    const [open, setOpen] = useState(false)
 
    const [simulation, setSimulation] = useState(false)
    const runningRef = useRef(simulation)
    runningRef.current = simulation
 
+
+   const speedRef = useRef(speed)
+   speedRef.current = speed; 
    const runSimulation = useCallback(() => {
     if (!runningRef.current) {
       return;
@@ -62,8 +65,8 @@ const Grid = () => {
       });
     });
 
-    setTimeout(runSimulation, 100);
-  }, []);
+    setTimeout(runSimulation, speedRef.current);
+  }, [speed]);
 
 
   const clickedCell = (i,k) => {
@@ -95,8 +98,9 @@ const Grid = () => {
         <Randomize setGrid={setGrid} numRows={numRows} cols ={numCols}/>
          <DropDown color={colorCell} setColor={setColorCell}/>
         <Clear setSimulation={setSimulation} simulation ={simulation} setCount = {setCount} setGrid={setGrid} numCols={numCols} numRows={numRows}/>
-       
-        <br/>
+        <ReadMe setOpen={setOpen}/>
+        <br/> 
+        <SpeedSlider setSpeed={setSpeed} speed={speed}/> 
         <h2>Generations: {count}</h2>
         <div style={{display: 'grid', gridTemplateColumns: `repeat(${numCols}, 20px)`, margin: '0 auto', justifyContent:'center', marginBottom:'5%'}}>
             {grid && grid.map((rows, i) => rows.map((col, k) => (
@@ -109,6 +113,7 @@ const Grid = () => {
                 </div>
             )))}
         </div>
+        <Rules setOpen={setOpen} open={open}/>
     </>
     )
 }
