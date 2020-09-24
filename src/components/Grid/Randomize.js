@@ -1,10 +1,11 @@
 import React from 'react'
-import {  buttonStyles } from './ButtonStyle'
+import { ThemeProvider } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import startTheme from './ButtonStyle'
 
 
 export const Randomize = ({numRows, setRows, setGrid, cols}) => {
-    const classes = buttonStyles()
+  
 
   
     const randomCells = () => {
@@ -18,11 +19,13 @@ export const Randomize = ({numRows, setRows, setGrid, cols}) => {
     setGrid(rows);
     }
     return (
-        <>
-         <Button className ={classes.random} variant="outlined"  onClick={randomCells}>
+        
+        
+         <Button style={{marginRight: '2%'}}variant="outlined" onClick={randomCells} color="primary">
             Randomize
         </Button>
-        </>
+        
+        
     )
 }
 
